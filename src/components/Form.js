@@ -6,7 +6,7 @@ export default function Form(props) {
         // alert('Task added to list!')
         props.addTask("Hello!!")
     }
-    
+
     return (
         <form onSubmit={handleSubmit} >
             <h2 className="label-wrapper">
