@@ -1,19 +1,33 @@
+import React, {useState} from "react"
+import { nanoid } from "nanoid"
 import Todo from "./components/Todo"
 import Form from "./components/Form"
 import FilterButton from "./components/FilterButton"
 
 export default function App(props) {
+    const [tasks, setTasks] = useState(props.tasks)
+
     function addTask(name) {
-        alert(`Task name = ${name}`)
+        const newTask = {id: `todo-${nanoid()}`, name, completed: false}
+        setTasks([...tasks, newTask])
     }
 
-    const taskList = props.tasks.map((task) => {
-        return <Todo id={task.id} name={task.name} completed={task.completed} key={task.id}/>
+    function toggleTaskCompleted(id) {
+        console.log(tasks[0])
+    }
+
+    const taskList = tasks.map((task) => {
+        return <Todo id={task.id} name={task.name} completed={task.completed} key={task.id}
+                     toggleTaskCompleted={toggleTaskCompleted}
+                />
     })
 
     const buttonList = props.buttons.map((button) => {
         return <FilterButton id={button.id} name={button.name}/>
     })
+
+    const tasksNoun = taskList.length === 1 ? "task" : "tasks"
+    const headingText = `${taskList.length} ${tasksNoun} remaining`
 
     return (
         <div className="todoapp stack-large">
@@ -25,7 +39,7 @@ export default function App(props) {
                 {/*<FilterButton />*/}
                 {/*<FilterButton />*/}
             </div>
-            <h2 id="list-heading">3 tasks remaining</h2>
+            <h2 id="list-heading">{headingText}</h2>
             <ul
                 role="list"
                 className="todo-list stack-large stack-exception"
