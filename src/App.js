@@ -13,18 +13,34 @@ export default function App(props) {
     }
 
     function toggleTaskCompleted(id) {
-        console.log(tasks[0])
         const updatedTasks = tasks.map((task) => {
-            if (task.id === id)
-                return { ...task, completed: !task.completed}
-            return task
+            return (task.id === id ? { ...task, completed: !task.completed} : task) 
         })
         setTasks(updatedTasks)
     }
 
+    function editTask(id, newTaskName) {
+        const editedTaskList = tasks.map((task) => {
+            return (task.id === id ? { ...task, name: newTaskName} : task)
+        })
+        setTasks(editedTaskList)
+    }
+
+    function deleteTask(id) {
+        console.log(id)
+        const updatedTasks = tasks.filter((task) => task.id !== id)
+        setTasks(updatedTasks)
+    }
+
     const taskList = tasks.map((task) => {
-        return <Todo id={task.id} name={task.name} completed={task.completed} key={task.id}
-                     toggleTaskCompleted={toggleTaskCompleted}
+        return <Todo 
+                    id={task.id} 
+                    name={task.name} 
+                    completed={task.completed} 
+                    key={task.id}
+                    toggleTaskCompleted={toggleTaskCompleted}
+                    deleteTask={deleteTask}
+                    editTask={editTask}
                 />
     })
 
