@@ -11,16 +11,16 @@ const DATA = [
     {id: 'todo-2', name: 'Repeat', completed: false},
 ]
 
-const BUTTONS = [
-    {id: 'btn-0', name: 'all'},
-    {id: 'btn-1', name: 'active'},
-    {id: 'btn-2', name: 'completed'},
-]
+// const BUTTONS = [
+//     {id: 'btn-0', name: 'all'},
+//     {id: 'btn-1', name: 'active'},
+//     {id: 'btn-2', name: 'completed'},
+// ]
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App subject="Saksham" tasks={DATA} buttons={BUTTONS}/>
+    <App tasks={DATA} />
   </React.StrictMode>
 );
 
