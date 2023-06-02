@@ -14,6 +14,12 @@ export default function App(props) {
 
     function toggleTaskCompleted(id) {
         console.log(tasks[0])
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === id)
+                return { ...task, completed: !task.completed}
+            return task
+        })
+        setTasks(updatedTasks)
     }
 
     const taskList = tasks.map((task) => {

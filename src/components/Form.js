@@ -4,7 +4,7 @@ export default function Form(props) {
     const [name, setName] = useState("")
 
     function handleChange(e) {
-        // console.log(e.target.value)
+        // console.log(e.target.value)  // e.target == <input> ==> e.target.value == <input>.value
         setName(e.target.value)
     }
 
